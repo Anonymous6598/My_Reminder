@@ -1,4 +1,4 @@
-import abc, typing, pickle
+import abc, typing
 
 class My_Reminder_interface(abc.ABC):
     @abc.abstractmethod
@@ -6,9 +6,5 @@ class My_Reminder_interface(abc.ABC):
         pass
     
     @abc.abstractmethod
-    def __settigs__(self: typing.Self) -> None:
-        pass
-
-    @abc.abstractmethod
-    def __change_language__(self: typing.Self,  pickle_serialization: pickle) -> None:
+    def __create_list_note__(self: typing.Self) -> None:
         pass
