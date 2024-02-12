@@ -1,4 +1,4 @@
-import tkinter, tkinter.filedialog, tkinter.messagebox, typing, My_Reminder_interface, random, tkdrag, My_Reminder_screen, CTkMenuBar, My_Reminder_note, My_Reminder_list_note, locale
+import typing, My_Reminder_interface, random, tkdrag, My_Reminder_screen, CTkMenuBar, My_Reminder_note, My_Reminder_list_note, locale
 from tkinterdnd2 import *
 from customtkinter import *
 
@@ -37,7 +37,6 @@ class GUI(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface):
         else:
            self.main_secreen_title_menu.add_cascade(text=f"new note", command=self.__create_note__)
            self.main_secreen_title_menu.add_cascade(text=f"new list", command=self.__create_list_note__)
-
 
     @typing.override
     def __create_note__(self: typing.Self) -> None:
