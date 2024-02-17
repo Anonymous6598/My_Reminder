@@ -2,7 +2,7 @@ import typing, My_Reminder_interface, random, tkdrag, My_Reminder_screen, CTkMen
 from tkinterdnd2 import *
 from customtkinter import *
 
-class GUI(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface):
+class Program(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface):
     
     TITLE: typing.Final[str] = f"My Reminder"
     ICON: typing.Final[str] = f"my reminder icon.ico"
@@ -49,5 +49,5 @@ class GUI(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface):
         self.note.place(x=random.randint(300, 500), y=random.randint(100, 200))
    
 if __name__ == f"__main__":
-    program: GUI = GUI()
+    program: Program = Program()
     program.mainloop()
