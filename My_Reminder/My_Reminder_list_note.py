@@ -31,10 +31,12 @@ class List_note(customtkinter.CTkFrame, My_Reminder_List_note_interface.My_Remin
            self.main_screen_note_clear_note_button.configure(text=f"clear")
            
         tkdrag.Drag(self)
-        
+
+    @typing.override  
     def __delete_note__(self: typing.Self) -> None:
         self.place_forget()
        
+    @typing.override
     def __add_list__(self: typing.Self) -> None:
         self.main_screen_add_list_note_button_my_reminder_list_note_frame_entry_variable += 1
         self.main_screen_my_reminder_list_note_frame_entry: My_Reminder_list_note_frame_entry = My_Reminder_list_note_frame_entry(master=self.main_screen_note_frame_box)

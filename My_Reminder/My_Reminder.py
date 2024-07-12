@@ -50,10 +50,12 @@ class GUI(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface):
 
         self.main_screen_note_AI_button: customtkinter.CTkButton = self.main_secreen_title_menu.add_cascade(text=f"AI", command=lambda: AI_window())
 
+    @typing.override
     def __create_note__(self: typing.Self) -> None:
         self.note: My_Reminder_note.Note = My_Reminder_note.Note(master=self.main_screen_note_frame)
         self.note.place(x=random.randint(300, 500), y=random.randint(100, 200))
 
+    @typing.override
     def __create_list_note__(self: typing.Self) -> None:
         self.note: My_Reminder_list_note.List_note = My_Reminder_list_note.List_note(master=self.main_screen_note_frame)
         self.note.place(x=random.randint(300, 500), y=random.randint(100, 200))
