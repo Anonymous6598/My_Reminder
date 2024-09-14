@@ -1,23 +1,22 @@
-import tkinter, tkinter.filedialog, tkinter.messagebox, typing, My_Reminder_interface, random, tkdrag, My_Reminder_screen, CTkMenuBar, My_Reminder_note, My_Reminder_list_note, locale, asyncio, My_Reminder_AI
-
+import tkinter, tkinter.filedialog, tkinter.messagebox, typing, My_Reminder_interface, random, My_Reminder_screen, CTkMenuBar, My_Reminder_note, My_Reminder_list_note, locale, asyncio, My_Reminder_AI
 import customtkinter
 from tkinterdnd2 import *
 from customtkinter import *
 
-class GUI(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface):
+class Program(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface):
     
-    TITLE: typing.Final[str] = f"My Reminder"
+    TITLE: typing.Final[str] = f"My Reminder "
     ICON: typing.Final[str] = f"my reminder icon.ico"
     COLOR_THEME: typing.Final[str] = f"dark-blue"
-    WIDGET_SCALING: typing.Final[float] = 1.251
     APPEREANCE: typing.Final[str] = f"system"
+    WIDGET_SCALING: typing.Final[int] = 1.251
 
     def __init__(self: typing.Self, fg_color: str | tuple[str, str] | None = None, *args: typing.Any, **kwargs: typing.Any):
         My_Reminder_screen.Tk.__init__(self, fg_color, *args, **kwargs)
         
-        set_widget_scaling(self.WIDGET_SCALING)
         set_default_color_theme(self.COLOR_THEME)
         set_appearance_mode(self.APPEREANCE)
+        set_widget_scaling(self.WIDGET_SCALING)
         deactivate_automatic_dpi_awareness()
 
         self.title(self.TITLE)
@@ -29,26 +28,64 @@ class GUI(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface):
         self.main_screen_note_frame.place(x=0, y=0)
         
         self.main_screen_note_menu_button: customtkinter.CTkButton = self.main_secreen_title_menu.add_cascade(text=f"☰")
+
+        self.main_screen_note_frame_menu: tkinter.Menu = tkinter.Menu(self.main_screen_note_frame, tearoff=0)
+
+        self.bind("<Button-3>", lambda event: self.main_screen_note_frame_menu.post(event.x_root, event.y_root))
         
         if locale.getdefaultlocale()[0] == "sr_RS":
            self.main_screen_note_menu_button_submenu: CTkMenuBar.CustomDropdownMenu = CTkMenuBar.CustomDropdownMenu(widget=self.main_screen_note_menu_button, fg_color=f"transparent")
 
            self.main_screen_note_menu_button_submenu.add_option(option=f"нова белешка", command=self.__create_note__)
-           self.main_screen_note_menu_button_submenu.add_option(option=f"нови списак", command=self.__create_list_note__)  
+           self.main_screen_note_menu_button_submenu.add_option(option=f"нови списак", command=self.__create_list_note__)
+           self.main_screen_note_menu_button_submenu.add_option(option=f"ВИ", command=lambda: AI_window())
+
+           self.main_screen_note_frame_menu.add_command(label=f"нова белешка", command=self.__create_note__)
+           self.main_screen_note_frame_menu.add_command(label=f"нови списак", command=self.__create_list_note__)
+
+           self.main_screen_note_frame_menu.add_separator()
+
+           self.main_screen_note_frame_menu.add_command(label=f"ВИ", command=lambda: AI_window())
+
+           self.main_screen_note_frame_menu.add_separator()
+
+           self.main_screen_note_frame_menu.add_command(label=f"излаз", command=lambda: sys.exit())
            
         elif locale.getdefaultlocale()[0] == "ru_RU":
            self.main_screen_note_menu_button_submenu: CTkMenuBar.CustomDropdownMenu = CTkMenuBar.CustomDropdownMenu(widget=self.main_screen_note_menu_button, fg_color=f"transparent")
 
            self.main_screen_note_menu_button_submenu.add_option(option=f"новая заметка", command=self.__create_note__)
-           self.main_screen_note_menu_button_submenu.add_option(option=f"новый список", command=self.__create_list_note__)           
+           self.main_screen_note_menu_button_submenu.add_option(option=f"новый список", command=self.__create_list_note__)
+
+           self.main_screen_note_frame_menu.add_separator()
+
+           self.main_screen_note_menu_button_submenu.add_option(option=f"ИИ (Нейро сеть)", command=lambda: AI_window())  
+
+           self.main_screen_note_frame_menu.add_command(label=f"новая заметка", command=self.__create_note__)
+           self.main_screen_note_frame_menu.add_command(label=f"новый список", command=self.__create_list_note__)
+           self.main_screen_note_frame_menu.add_command(label=f"ИИ (Нейро сеть)", command=lambda: AI_window())
+
+           self.main_screen_note_frame_menu.add_separator()
+
+           self.main_screen_note_frame_menu.add_command(label=f"выход", command=lambda: sys.exit())         
 
         else:
            self.main_screen_note_menu_button_submenu: CTkMenuBar.CustomDropdownMenu = CTkMenuBar.CustomDropdownMenu(widget=self.main_screen_note_menu_button, fg_color=f"transparent")
 
            self.main_screen_note_menu_button_submenu.add_option(option=f"new note", command=self.__create_note__)
            self.main_screen_note_menu_button_submenu.add_option(option=f"new list", command=self.__create_list_note__)
+           self.main_screen_note_menu_button_submenu.add_option(option=f"AI", command=lambda: AI_window())
 
-        self.main_screen_note_AI_button: customtkinter.CTkButton = self.main_secreen_title_menu.add_cascade(text=f"AI", command=lambda: AI_window())
+           self.main_screen_note_frame_menu.add_command(label=f"new note", command=self.__create_note__)
+           self.main_screen_note_frame_menu.add_command(label=f"new list", command=self.__create_list_note__)
+
+           self.main_screen_note_frame_menu.add_separator()
+
+           self.main_screen_note_frame_menu.add_command(label=f"AI", command=lambda: AI_window())
+
+           self.main_screen_note_frame_menu.add_separator()
+
+           self.main_screen_note_frame_menu.add_command(label=f"exit", command=lambda: sys.exit())
 
     @typing.override
     def __create_note__(self: typing.Self) -> None:
@@ -96,5 +133,5 @@ class AI_window(CTkToplevel):
         self.ai_window_entry.delete(f"-1", tkinter.END)
    
 if __name__ == f"__main__":
-    program: GUI = GUI()
+    program: Program = Program()
     program.mainloop()
