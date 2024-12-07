@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>My_Reminder</Name>
     <RootNamespace>My_Reminder</RootNamespace>
-    <InterpreterId>Global|VisualStudio|Python311</InterpreterId>
+    <InterpreterId>Global|PythonCore|3.12</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
