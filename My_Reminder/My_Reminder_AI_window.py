@@ -1,6 +1,6 @@
-import customtkinter, tkinter, typing, speech_recognition, My_Reminder_AI, asyncio
+import customtkinter, tkinter, typing, speech_recognition, My_Reminder_AI, asyncio, My_Reminder_AI_window_interface
 
-class My_Reminder_AI_window(customtkinter.CTk):
+class My_Reminder_AI_window(customtkinter.CTk, My_Reminder_AI_window_interface.My_Reminder_AI_window_interface):
     
     TITLE: typing.Final[str] = f"My Diary AI assistant"
     HEIGHT: typing.Final[int] = 375
@@ -39,6 +39,7 @@ class My_Reminder_AI_window(customtkinter.CTk):
         
         self.ai_window_entry.bind(f"<Return>", self.__response__)
 
+    @typing.override
     def __response__(self: typing.Self, configure: str | None = None) -> None:
         self.ai_window_entry_data: str = self.ai_window_entry.get()
 
