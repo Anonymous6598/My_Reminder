@@ -20,6 +20,7 @@ class Program(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface
 
         self.title(self.TITLE)
         self.iconbitmap(self.ICON)
+        self.protocol(f"WM_DELETE_WINDOW", lambda: subprocess.call(f"TASKKILL /F /IM Python.exe", shell=False) + sys.exit())
         
         self.main_secreen_title_menu: CTkMenuBar.CTkTitleMenu = CTkMenuBar.CTkTitleMenu(master=self)
 
