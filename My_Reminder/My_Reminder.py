@@ -1,4 +1,4 @@
-import tkinter, tkinter.filedialog, tkinter.messagebox, typing, My_Reminder_interface, random, My_Reminder_screen, CTkMenuBar, My_Reminder_note, My_Reminder_list_note, locale, subprocess
+import tkinter, tkinter.filedialog, tkinter.messagebox, typing, My_Reminder_interface, random, My_Reminder_screen, CTkMenuBar, My_Reminder_note, My_Reminder_list_note, locale, subprocess, platform
 from tkinterdnd2 import *
 from customtkinter import *
 
@@ -19,15 +19,22 @@ class Program(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface
         deactivate_automatic_dpi_awareness()
 
         self.title(self.TITLE)
-        self.iconbitmap(self.ICON)
-        self.protocol(f"WM_DELETE_WINDOW", lambda: subprocess.call(f"TASKKILL /F /IM Python.exe", shell=False) + sys.exit())
+        self.protocol(f"WM_DELETE_WINDOW", lambda: self.__exit__())
         
-        self.main_secreen_title_menu: CTkMenuBar.CTkTitleMenu = CTkMenuBar.CTkTitleMenu(master=self)
+        if platform.system() == f"Windows":
+            self.iconbitmap(self.ICON)
 
-        self.main_screen_note_frame: CTkFrame = CTkFrame(master=self, height=791, width=1535, corner_radius=0, bg_color=f"transparent", border_color=(f"black", f"white"), border_width=1)
-        self.main_screen_note_frame.place(x=0, y=0)
+        
+        if platform.system() == f"Linux":
+            self.main_secreen_title_menu: CTkMenuBar.CTkMenuBar = CTkMenuBar.CTkMenuBar(self)
+		
+        else:
+            self.main_secreen_title_menu: CTkMenuBar.CTkTitleMenu = CTkMenuBar.CTkTitleMenu(self)
         
         self.main_screen_note_menu_button: CTkButton = self.main_secreen_title_menu.add_cascade(text=f"☰")
+
+        self.main_screen_note_frame: CTkFrame = CTkFrame(master=self, height=791, width=1535, corner_radius=0, bg_color=f"transparent", border_color=(f"black", f"white"), border_width=1)
+        self.main_screen_note_frame.pack(fill=f"both", expand=True)
 
         self.main_screen_note_frame_menu: tkinter.Menu = tkinter.Menu(self.main_screen_note_frame, tearoff=0)
 
@@ -38,7 +45,7 @@ class Program(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface
 
            self.main_screen_note_menu_button_submenu.add_option(option=f"нова белешка", command=self.__create_note__)
            self.main_screen_note_menu_button_submenu.add_option(option=f"нови списак", command=self.__create_list_note__)
-           self.main_screen_note_menu_button_submenu.add_option(option=f"AI", command=lambda: os.startfile(f"My_Reminder_AI_window.py", show_cmd=False))
+           self.main_screen_note_menu_button_submenu.add_option(option=f"AI", command=lambda: self.__open_ai_window__())
 
            self.main_screen_note_frame_menu.add_command(label=f"нова белешка", command=self.__create_note__)
            self.main_screen_note_frame_menu.add_command(label=f"нови списак", command=self.__create_list_note__)
@@ -59,11 +66,11 @@ class Program(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface
 
            self.main_screen_note_frame_menu.add_separator()
 
-           self.main_screen_note_menu_button_submenu.add_option(option=f"ИИ (Нейро сеть)", command=lambda: os.startfile(f"My_Reminder_AI_window.py", show_cmd=False))  
+           self.main_screen_note_menu_button_submenu.add_option(option=f"ИИ (Нейро сеть)", command=lambda: self.__open_ai_window__())  
 
            self.main_screen_note_frame_menu.add_command(label=f"новая заметка", command=self.__create_note__)
            self.main_screen_note_frame_menu.add_command(label=f"новый список", command=self.__create_list_note__)
-           self.main_screen_note_frame_menu.add_command(label=f"ИИ (Нейро сеть)", command=lambda: os.startfile(f"My_Reminder_AI_window.py", show_cmd=False))
+           self.main_screen_note_frame_menu.add_command(label=f"ИИ (Нейро сеть)", command=lambda: self.__open_ai_window__())
 
            self.main_screen_note_frame_menu.add_separator()
 
@@ -74,7 +81,7 @@ class Program(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface
 
            self.main_screen_note_menu_button_submenu.add_option(option=f"new note", command=self.__create_note__)
            self.main_screen_note_menu_button_submenu.add_option(option=f"new list", command=self.__create_list_note__)
-           self.main_screen_note_menu_button_submenu.add_option(option=f"AI", command=lambda: os.startfile(f"My_Reminder_AI_window.py", show_cmd=False))
+           self.main_screen_note_menu_button_submenu.add_option(option=f"AI", command=lambda: self.__open_ai_window__())
 
            self.main_screen_note_frame_menu.add_command(label=f"new note", command=self.__create_note__)
            self.main_screen_note_frame_menu.add_command(label=f"new list", command=self.__create_list_note__)
@@ -96,6 +103,21 @@ class Program(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface
     def __create_list_note__(self: typing.Self) -> None:
         self.note: My_Reminder_list_note.List_note = My_Reminder_list_note.List_note(master=self.main_screen_note_frame)
         self.note.place(x=random.randint(300, 500), y=random.randint(100, 200))
+
+    def __open_ai_window__(self: typing.Self) -> None:
+        if platform.system() == f"Linux":
+            os.popen(f"python3 My_Reminder_AI_window.py")
+
+        else:
+            os.startfile(f"My_Reminder_AI_window.py", show_cmd=False)
+
+    def __exit__(self: typing.Self) -> None:
+        if platform.system() == f"Windows":
+            subprocess.call(f"TASKKILL /F /IM Python.exe", shell=False)
+            sys.exit()
+				
+        else:
+            sys.exit()
    
 if __name__ == f"__main__":
     program: Program = Program()
