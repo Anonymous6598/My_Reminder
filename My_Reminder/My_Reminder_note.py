@@ -1,28 +1,26 @@
-import My_Reminder_Note_interface, typing, tkinter.filedialog, locale, tkdrag
-from customtkinter import *
-from tkinterdnd2 import *
+import customtkinter, tkinterdnd2, My_Reminder_Note_interface, typing, tkinter.filedialog, locale, tkdrag
 
-class Note(CTkFrame, My_Reminder_Note_interface.My_Reminder_Note_interface):
+class Note(customtkinter.CTkFrame, My_Reminder_Note_interface.My_Reminder_Note_interface):
     WIDTH: typing.Final[int] = 300
     HEIGHT: typing.Final[int] = 300
     CORNER_RADIUS: typing.Final[int] = 5
     
     def __init__(self: typing.Self, master: typing.Any | None = None, height: int = HEIGHT, width: int = WIDTH, corner_radius: int = CORNER_RADIUS, border_width: int = 1, fg_color: str = f"transparent", *args, **kwargs) -> None:
-        CTkFrame.__init__(self, master=master, height=height, width=width, corner_radius=corner_radius, border_width=border_width, fg_color=fg_color, *args, **kwargs)
+        customtkinter.CTkFrame.__init__(self, master=master, height=height, width=width, corner_radius=corner_radius, border_width=border_width, fg_color=fg_color, *args, **kwargs)
         
-        self.main_screen_note_text_box: CTkTextbox = CTkTextbox(master=self, width=295, height=260, corner_radius=self.CORNER_RADIUS, fg_color=f"transparent", border_width=0)
+        self.main_screen_note_text_box: customtkinter.CTkTextbox = customtkinter.CTkTextbox(master=self, width=295, height=260, corner_radius=self.CORNER_RADIUS, fg_color=f"transparent", border_width=0)
         self.main_screen_note_text_box.place(x=2, y=2)
 
-        self.main_screen_note_text_box.drop_target_register(DND_ALL)
+        self.main_screen_note_text_box.drop_target_register(tkinterdnd2.DND_ALL)
         self.main_screen_note_text_box.dnd_bind(f"<<Drop>>", self.__open_note_with_dnd__)
         
-        self.main_screen_note_open_note_button: CTkButton = CTkButton(master=self, height=30, width=40, text=f"отвори", fg_color=(f"dark blue", f"green"), command=self.__open_note__)
+        self.main_screen_note_open_note_button: customtkinter.CTkButton = customtkinter.CTkButton(master=self, height=30, width=40, text=f"отвори", fg_color=(f"dark blue", f"green"), command=self.__open_note__)
         self.main_screen_note_open_note_button.place(x=2, y=265)
         
-        self.main_screen_note_save_note_button: CTkButton = CTkButton(master=self, height=30, width=40, text=f"сачувај", fg_color=(f"dark blue", f"green"), command=self.__save_note__)
+        self.main_screen_note_save_note_button: customtkinter.CTkButton = customtkinter.CTkButton(master=self, height=30, width=40, text=f"сачувај", fg_color=(f"dark blue", f"green"), command=self.__save_note__)
         self.main_screen_note_save_note_button.place(x=118, y=265)
 
-        self.main_screen_note_clear_note_button: CTkButton = CTkButton(master=self, height=30, width=40, text=f"обриши", fg_color=(f"dark blue", f"green"), command=self.__delete_note__)
+        self.main_screen_note_clear_note_button: customtkinter.CTkButton = customtkinter.CTkButton(master=self, height=30, width=40, text=f"обриши", fg_color=(f"dark blue", f"green"), command=self.__delete_note__)
         self.main_screen_note_clear_note_button.place(x=236, y=265)
 
         self.main_screen_note_text_box_menu: tkinter.Menu = tkinter.Menu(self.main_screen_note_text_box, tearoff=0)

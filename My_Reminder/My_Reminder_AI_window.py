@@ -1,6 +1,6 @@
-import customtkinter, tkinter, typing, speech_recognition, My_Reminder_AI, asyncio, My_Reminder_AI_window_interface
+import customtkinter, tkinter, typing, speech_recognition, My_Reminder_AI
 
-class My_Reminder_AI_window(customtkinter.CTk, My_Reminder_AI_window_interface.My_Reminder_AI_window_interface):
+class My_Reminder_AI_window(customtkinter.CTkToplevel):
     
     TITLE: typing.Final[str] = f"My Diary AI assistant"
     HEIGHT: typing.Final[int] = 375
@@ -11,7 +11,7 @@ class My_Reminder_AI_window(customtkinter.CTk, My_Reminder_AI_window_interface.M
     THEME: typing.Final[str] = f"system"
 
     def __init__(self: typing.Self, *args, **kwargs) -> None:
-        customtkinter.CTk.__init__(self, *args, **kwargs)
+        customtkinter.CTkToplevel.__init__(self, *args, **kwargs)
 
         customtkinter.set_widget_scaling(self.WIDGET_SCALING)
         customtkinter.set_default_color_theme(self.COLOR_THEME)
@@ -39,18 +39,16 @@ class My_Reminder_AI_window(customtkinter.CTk, My_Reminder_AI_window_interface.M
         
         self.ai_window_entry.bind(f"<Return>", self.__response__)
 
-    @typing.override
     def __response__(self: typing.Self, configure: str | None = None) -> None:
         self.ai_window_entry_data: str = self.ai_window_entry.get()
 
         self.ai_window_textbox.configure(state=f"normal")
-        self.query: str = asyncio.run(My_Reminder_AI.My_Reminder_LM().__response__(self.ai_window_entry_data))
+        self.query: str = My_Reminder_AI.My_Reminder_LM().__response__(self.ai_window_entry_data)
 
-        self.ai_window_textbox.insert(tkinter.END, f"{self.query}\n", f"-1.0")
+        self.ai_window_textbox.insert(tkinter.END, f"USER:\n{self.ai_window_entry_data}\nGPT-4o-mini:\n{self.query}\n", f"-1.0")
         self.ai_window_textbox.configure(state=f"disabled")
         self.ai_window_entry.delete(f"-1", tkinter.END)
 
-    @typing.override
     def __audio_input__(self: typing.Self) -> None:
         self.recognizer: speech_recognition.Recognizer = speech_recognition.Recognizer()
         with speech_recognition.Microphone() as self.source:
@@ -58,6 +56,3 @@ class My_Reminder_AI_window(customtkinter.CTk, My_Reminder_AI_window_interface.M
             self.text: str = self.recognizer.recognize_google(self.audio_data)
 
         self.ai_window_entry.insert(f"0", self.text)
-
-if __name__ == f"__main__":
-    My_Reminder_AI_window().mainloop()
