@@ -1,6 +1,6 @@
 import customtkinter, tkinter, tkinter.filedialog, tkinter.messagebox, typing, My_Reminder_interface, random, My_Reminder_screen, CTkMenuBar, My_Reminder_note, My_Reminder_list_note, locale, My_Reminder_AI_window, sys
 
-class Program(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface):
+class Program(My_Reminder_screen.Window, My_Reminder_interface.My_Reminder_interface):
     
     TITLE: typing.Final[str] = f"My Reminder "
     ICON: typing.Final[str] = f"my reminder icon.ico"
@@ -9,7 +9,7 @@ class Program(My_Reminder_screen.Tk, My_Reminder_interface.My_Reminder_interface
     WIDGET_SCALING: typing.Final[int] = 1.251
 
     def __init__(self: typing.Self, fg_color: str | tuple[str, str] | None = None, *args: typing.Any, **kwargs: typing.Any):
-        My_Reminder_screen.Tk.__init__(self, fg_color, *args, **kwargs)
+        My_Reminder_screen.Window.__init__(self, fg_color, *args, **kwargs)
         
         customtkinter.set_default_color_theme(self.COLOR_THEME)
         customtkinter.set_appearance_mode(self.APPEREANCE)
