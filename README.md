@@ -3,7 +3,7 @@ This is just casual note app. If you like old school style notes, you'll enjoy t
 
 ## Windows
 
-![Snimak ekrana 2025-03-15 200216](https://github.com/user-attachments/assets/0b59d5c7-7a25-48fd-9925-c058d924cb21)
+![Snimak ekrana 2025-03-31 180334](https://github.com/user-attachments/assets/17123dc1-f75d-4861-9a0d-af873fb6650d)
 
 ## Linux
 
