@@ -2,7 +2,7 @@ import customtkinter, tkinter, typing, speech_recognition, My_Reminder_AI
 
 class My_Reminder_AI_window(customtkinter.CTkToplevel):
     
-    TITLE: typing.Final[str] = f"My Diary AI assistant"
+    TITLE: typing.Final[str] = f"My Reminder AI assistant"
     HEIGHT: typing.Final[int] = 375
     WIDTH: typing.Final[int] = 655
     COLOR_THEME: typing.Final[str] = f"dark-blue"
