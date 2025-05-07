@@ -1,5 +1,5 @@
 # My_Reminder
-This is just casual note app. If you like old school style notes, you'll enjoy this program. And now with Open AI GPT-4o model assistant, which can help you with notes. Embrace the future.
+This is just casual note app. If you like old school style notes, you'll enjoy this program. And now with Open AI GPT-4o (PHi3) model assistant, which can help you with notes. Embrace the future. And now it supports Copilot+PC laptops!
 
 ## Windows
 
@@ -8,6 +8,19 @@ This is just casual note app. If you like old school style notes, you'll enjoy t
 ## Linux
 
 ![Снимак екрана од 2025-01-01 21-21-18](https://github.com/user-attachments/assets/48f8d238-0997-46bd-b5f6-062687fb3c1c)
+
+## Copilot+PC
+
+![Snimak ekrana 2025-05-07 184846](https://github.com/user-attachments/assets/efe90477-69e8-4ee3-a15a-930ff8368bc4)
+
+> [!Warning]
+> Copilot+PC version only supports Intel Core Ultra processors
+>
+> Support for AMD and Qualcomm will be soon added
+>
+> Specs for laptop to run app:
+> - Intel Core Ultra proccesors
+> - 24 gb of ram (32 gb is recommended)
 
 (Everything is in serbian)
 
