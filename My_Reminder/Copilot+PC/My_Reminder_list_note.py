@@ -25,23 +25,10 @@ class List_note(customtkinter.CTkFrame, My_Reminder_List_note_interface.My_Remin
 
         self.main_screen_note_frame_box.bind(f"<Button-3>", lambda event: self.main_screen_note_frame_box_menu.post(event.x_root, event.y_root))
         
-        if locale.getdefaultlocale()[0] == f"sr_RS":
-           self.main_screen_note_clear_note_button.configure(text=f"обриши")                 
+        self.main_screen_note_clear_note_button.configure(text=f"clear")
 
-           self.main_screen_note_frame_box_menu.add_command(label=f"нови лист", command=self.__add_list__)
-           self.main_screen_note_frame_box_menu.add_command(label=f"обриши", command=self.__delete_note__)
-                 
-        elif locale.getdefaultlocale()[0] == f"ru_RU":
-           self.main_screen_note_clear_note_button.configure(text=f"удалить")
-
-           self.main_screen_note_frame_box_menu.add_command(label=f"новый список", command=self.__add_list__)
-           self.main_screen_note_frame_box_menu.add_command(label=f"удалить", command=self.__delete_note__)
-                
-        else:
-           self.main_screen_note_clear_note_button.configure(text=f"clear")
-
-           self.main_screen_note_frame_box_menu.add_command(label=f"new list", command=self.__add_list__)
-           self.main_screen_note_frame_box_menu.add_command(label=f"clear", command=self.__delete_note__)
+        self.main_screen_note_frame_box_menu.add_command(label=f"new list", command=self.__add_list__)
+        self.main_screen_note_frame_box_menu.add_command(label=f"clear", command=self.__delete_note__)
            
         tkdrag.Drag(self)
 
