@@ -29,32 +29,13 @@ class Note(customtkinter.CTkFrame, My_Reminder_Note_interface.My_Reminder_Note_i
 
         tkdrag.Drag(self)
         
-        if locale.getdefaultlocale()[0] == f"sr_RS":
-           self.main_screen_note_open_note_button.configure(text=f"отвори")
-           self.main_screen_note_save_note_button.configure(text=f"сачувај") 
-           self.main_screen_note_clear_note_button.configure(text=f"обриши")     
+        self.main_screen_note_open_note_button.configure(text=f"open")
+        self.main_screen_note_save_note_button.configure(text=f"save") 
+        self.main_screen_note_clear_note_button.configure(text=f"clear")
 
-           self.main_screen_note_text_box_menu.add_command(label=f"отвори", command=self.__open_note__)
-           self.main_screen_note_text_box_menu.add_command(label=f"сачувај", command=self.__save_note__)
-           self.main_screen_note_text_box_menu.add_command(label=f"обриши", command=self.__delete_note__)            
-                 
-        elif locale.getdefaultlocale()[0] == f"ru_RU":
-           self.main_screen_note_open_note_button.configure(text=f"открыть")
-           self.main_screen_note_save_note_button.configure(text=f"сохранить") 
-           self.main_screen_note_clear_note_button.configure(text=f"удалить")
-
-           self.main_screen_note_text_box_menu.add_command(label=f"открыть", command=self.__open_note__)
-           self.main_screen_note_text_box_menu.add_command(label=f"сохранить", command=self.__save_note__)
-           self.main_screen_note_text_box_menu.add_command(label=f"удалить", command=self.__delete_note__)
-                
-        else:
-           self.main_screen_note_open_note_button.configure(text=f"open")
-           self.main_screen_note_save_note_button.configure(text=f"save") 
-           self.main_screen_note_clear_note_button.configure(text=f"clear")
-
-           self.main_screen_note_text_box_menu.add_command(label=f"open", command=self.__open_note__)
-           self.main_screen_note_text_box_menu.add_command(label=f"save", command=self.__save_note__)
-           self.main_screen_note_text_box_menu.add_command(label=f"clear", command=self.__delete_note__)
+        self.main_screen_note_text_box_menu.add_command(label=f"open", command=self.__open_note__)
+        self.main_screen_note_text_box_menu.add_command(label=f"save", command=self.__save_note__)
+        self.main_screen_note_text_box_menu.add_command(label=f"clear", command=self.__delete_note__)
 
     @typing.override  
     def __open_note__(self: typing.Self) -> None:
