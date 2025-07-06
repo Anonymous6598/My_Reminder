@@ -20,7 +20,7 @@ This is just casual note app. If you like old school style notes, you'll enjoy t
 >
 > Specs for laptop to run app:
 > - Intel Core Ultra proccesors
-> - 8 gb of ram (16 gb is recommended)
+> - 2 gb of ram (4 gb is recommended)
 
 (Everything is in serbian)
 
