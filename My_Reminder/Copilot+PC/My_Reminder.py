@@ -66,7 +66,7 @@ class My_Reminder_AI_window(customtkinter.CTkToplevel):
     TITLE: typing.Final[str] = f"My Reminder AI assistant (Copilot+PC edition)"
     HEIGHT: typing.Final[int] = 375
     WIDTH: typing.Final[int] = 655
-    ICON: typing.Final[str] = f"my_diary_icon.ico"
+    ICON: typing.Final[str] = f"my reminder icon.ico"
     COLOR_THEME: typing.Final[str] = f"dark-blue"
     WIDGET_SCALING: typing.Final[float] = 1.251
 
