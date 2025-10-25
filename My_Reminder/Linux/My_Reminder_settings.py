@@ -4,7 +4,7 @@ with open(f"my_reminder_language_settings.pickle", f"rb+") as data: language_dat
 
 with open(f"my_reminder_theme_settings.pickle", f"rb+") as theme_data: theme: str = pickle.load(theme_data)
 
-class My_Reminder_setting_window(customtkinter.CTkToplevel):
+class My_Reminder_setting_window(customtkinter.CTkToplevel, My_Reminder_setting_window_interface.My_Reminder_setting_window_interface):
     WIDTH: typing.Final[int] = 655 
     HEIGHT: typing.Final[int] = 330
     TITLE: typing.Final[str] = f"My Reminder settings window"
@@ -85,3 +85,4 @@ class My_Reminder_setting_window(customtkinter.CTkToplevel):
             
         else:
             tkinter.messagebox.showwarning(title=f"Внимание", message=f"Перезагрузите программу")
+
