@@ -1,4 +1,4 @@
-import customtkinter, tkinter.messagebox, pickle, typing
+import customtkinter, tkinter.messagebox, pickle, typing, My_Reminder_setting_window_interface
 
 with open(f"my_reminder_language_settings.pickle", f"rb+") as data: language_data: str = pickle.load(data)
 
@@ -56,6 +56,7 @@ class My_Reminder_setting_window(customtkinter.CTkToplevel):
 
         self.main_screen_settings_theme_mode_option.set(theme)
 
+    @typing.override
     def __language_settings__(self: typing.Self, pickle_serializer: pickle) -> None:
         self.main_screen_settings_language_option_data: str = self.main_screen_settings_language_option.get()
         with open(f"my_reminder_language_settings.pickle", f"wb+") as self.data:
@@ -70,6 +71,7 @@ class My_Reminder_setting_window(customtkinter.CTkToplevel):
         else:
             tkinter.messagebox.showwarning(title=f"Внимание", message=f"Перезагрузите программу")
 
+    @typing.override
     def __theme_settings__(self: typing.Self, pickle_serializer: pickle) -> None:
         self.main_screen_settings_theme_option_data: str = self.main_screen_settings_theme_mode_option.get()
         with open(f"my_reminder_theme_settings.pickle", f"wb+") as self.data:
