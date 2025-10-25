@@ -63,7 +63,8 @@ class Note(customtkinter.CTkFrame, My_Reminder_Note_interface.My_Reminder_Note_i
                 self.main_screen_note_text_box.insert(f"1.0", self.openned_file.read())
 
         except FileNotFoundError: pass
-        
+
+	@typing.override
     def __open_note_with_dnd__(self: typing.Self, event: str | None = None) -> None:
         if os.path.isfile(event.data):
             try:
