@@ -115,6 +115,7 @@ class My_Reminder_AI_window(customtkinter.CTkToplevel):
 
         threading.Thread(target=run_model).start()
 
+    @typing.override
     def __audio_input__(self: typing.Self) -> None:
         try:
             self.recognizer: speech_recognition.Recognizer = speech_recognition.Recognizer()
@@ -129,3 +130,4 @@ class My_Reminder_AI_window(customtkinter.CTkToplevel):
 if __name__ == f"__main__":
     program: Program = Program()
     program.mainloop()
+
