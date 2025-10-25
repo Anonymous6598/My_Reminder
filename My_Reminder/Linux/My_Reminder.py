@@ -110,6 +110,7 @@ class Program(My_Reminder_screen.Window, My_Reminder_interface.My_Reminder_inter
         self.note: My_Reminder_list_note.List_note = My_Reminder_list_note.List_note(master=self.main_screen_note_frame)
         self.note.place(x=random.randint(300, 500), y=random.randint(100, 200))
 
+    @typing.override
     def __fullscreen__(self: typing.Self) -> None:
         if self.attributes(f"-fullscreen"): self.attributes(f"-fullscreen", False)
         
@@ -130,4 +131,5 @@ class Program(My_Reminder_screen.Window, My_Reminder_interface.My_Reminder_inter
    
 if __name__ == f"__main__":
     program: Program = Program()
+
     program.mainloop()
