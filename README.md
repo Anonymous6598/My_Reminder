@@ -1,5 +1,5 @@
 # My_Reminder
-This is just casual note app. If you like old school style notes, you'll enjoy this program. And now with Open AI GPT-4o (Llama3.2) model assistant, which can help you with notes. Embrace the future. And now it supports Copilot+PC laptops!
+This is just casual note app. If you like old school style notes, you'll enjoy this program. And now with Open AI GPT-4 (Llama3.2) model assistant, which can help you with notes. Embrace the future. And now it supports Copilot+PC laptops!
 
 ## Windows
 
